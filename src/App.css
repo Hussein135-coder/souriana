@@ -1,38 +1,103 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Tajawal', sans-serif;
+}
+nav{
+  font-family: 'Tajawal', sans-serif !important;
+}
+#popup{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation:  fade-overlay .2s linear ;
+}
+#popup .form{
+  max-width: 500px;
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding : 20px;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  opacity: 1;
+  animation:  fade-in-form .2s linear ;
+}
+#popup .form.close{
+  animation:  fade-out-form .2s linear ;
+  opacity: 0;
+  transform: translateY(-60%);
+}
+
+table{
   text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
+th,td{
+  padding: 10px;
+}
+table tr:last-child {
+  border : 0
+}
+.status{
+  font-size: 20px;
+}
+input:focus,
+select:focus{
+  outline: 0;
+}
+@keyframes fade-out-form {
+  0%{
+    opacity: 1;
+    transform: translateY(-50%);
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(-60%);
+  
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes fade-overlay {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes fade-in-form {
+  0%{
+    opacity: 0;
+    transform: translateY(-60%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(-50%);
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.alert{
+  position: fixed !important;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ;
+}
+.alert.active{
+  opacity: 1;
+  visibility: visible;
+  top: 50px;
 }

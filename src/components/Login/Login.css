@@ -1,0 +1,11 @@
+.msg{
+    color :red;
+    margin-top: -14px;
+}
+.login-btn{
+    width:fit-content !important;
+}
+.login{
+    width: 75%;
+    max-width: 500px;
+}
