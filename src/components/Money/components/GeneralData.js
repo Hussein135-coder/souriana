@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../../../App.css'
+import { DataContext } from '../../../context/DataContext'
 
-const GeneralData = ({ money }) => {
+const GeneralData = ({ money , id}) => {
+
+    const data = useContext(DataContext)
+
+    let allMoney = 0;
+
+    data.money.map(d => {
+        allMoney += d['المبلغ']
+    })
+
+    const personMoney = Math.floor(allMoney / 3);
     const done = money.filter((m) => {
         return m["الحالة"] === 1
     })
@@ -35,6 +46,7 @@ const GeneralData = ({ money }) => {
     })
 
     return (
+    <>
         <div className=' mt-8 '>
             <div className=" text-center">
                 <div className="text-xl dark:text-gray-100  sm:text-2xl">
@@ -63,17 +75,31 @@ const GeneralData = ({ money }) => {
                                 <td>{generalMoney.done}</td>
 
                             </tr>
-                            <tr>
+                            <tr className='border-b border-gray-200 dark:border-gray-400'>
                                 <th>الباقي</th>
                                 <td>{count.pending}</td>
                                 <td>{generalMoney.pending}</td>
 
                             </tr>
+
+                            {id !== "all" &&  <tr>
+                                <th>المستحقات</th>
+                                <td>{generalMoney.total > personMoney ? 'يجب أن يدفع' : 'يجب أن يأخذ'}</td>
+                                <td>{Math.abs(generalMoney.total - personMoney) }</td>
+
+                            </tr>}
+                            {id === "all" && <tr>
+                                <th  className="dark:bg-gray-100 dark:text-gray-800  text-lg font-normal">حصة الشخص</th>
+                                
+                                <td colSpan={2} className="dark:bg-gray-100 dark:text-gray-800 text-lg">{personMoney}</td>
+                            </tr> }
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </>
     )
 }
 

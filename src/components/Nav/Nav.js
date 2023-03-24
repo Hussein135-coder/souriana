@@ -24,7 +24,7 @@ const Nav = () => {
                             <NavLink className="no-underline block w-max sm:py-0 pt-2  pb-4 transition duration-500 hover:text-gray-500 text-gray-900 dark:text-gray-100 dark:hover:text-gray-300"  to="/">الرئيسية</NavLink>
                         </li>
                         <li className="w-full sm:w-max">
-                            <NavLink className="no-underline block w-max  sm:py-0 pb-4 transition duration-500 hover:text-gray-500 text-gray-900 dark:text-gray-100 dark:hover:text-gray-300 " to="/money">الحوالات المالية</NavLink>
+                            <NavLink className="no-underline block w-max  sm:py-0 pb-4 transition duration-500 hover:text-gray-500 text-gray-900 dark:text-gray-100 dark:hover:text-gray-300 " to={loading ? '' : user? '/money' : '/login'}>الحوالات المالية</NavLink>
                         </li>
                         <li className="w-full sm:w-max">
                             {loading ?'':!user ?  <NavLink className="btn sm:mr-4" to="/login">تسجيل الدخول</NavLink> :<button onClick={() => logout()} className="btn sm:mr-4">تسجيل الخروج</button> }

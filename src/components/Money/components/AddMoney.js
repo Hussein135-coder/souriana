@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { Navigate, NavLink } from 'react-router-dom';
 import { DataContext } from '../../../context/DataContext';
 import PopAdd from './PopAdd';
 
@@ -19,7 +20,11 @@ const AddMoney = () => {
 
     return (
         <>
-            <button onClick={() => {setIsClose(false);setIsOpen(true);}} type="button" className="btn btn-primary">إضافة حوالة</button>
+        <div className='flex  justify-between'>
+
+            <button onClick={() => {setIsClose(false);setIsOpen(true);}} type="button" className="btn">إضافة حوالة</button>
+            <NavLink className=" btn"  to="/resetpass">تغيير كلمة السر</NavLink>
+        </div>
 
             {isOpen ? <PopAdd type='add' defaultData={addedMoney} setIsOpen={setIsOpen} toggle={[isClose, setIsClose]} /> : null}
         </>

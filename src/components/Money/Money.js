@@ -35,7 +35,7 @@ const Money = () => {
                 <AddMoney />
                 <h3 className='mt-5 mb-5 dark:text-gray-100 text-xl sm:text-2xl text-center '>الحوالات المالية</h3>
                 <FilterBtns filter={filterData} id={id} />
-                <GeneralData money={moneyG} />
+                <GeneralData money={moneyG } id={id}/>
                 <DisplayData money={moneyG} />
             </div>
         </div>

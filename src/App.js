@@ -27,8 +27,11 @@ function App() {
             <Route path="/login" element={
             <Loading>
               <Login />
-            </Loading> } />
-            <Route path="/resetPass" element={<ResetPass />} />         
+            </Loading> } />       
+            <Route path="/resetpass" element={
+            <Auth>
+              <ResetPass />
+            </Auth> } />         
         </Routes>
       </Router>
     </div>
