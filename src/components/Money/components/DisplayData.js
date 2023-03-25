@@ -3,11 +3,12 @@ import { DataContext } from '../../../context/DataContext'
 import Confirm from './Confirm'
 import PopAdd from './PopAdd'
 import '../../../App.css'
+import { NavLink } from 'react-router-dom'
 
-const DisplayData = ({ money }) => {
+const DisplayData = ({ money , formatter }) => {
     const { loggedInCheck, delMoney,delAllMoney,addAndUpdateMoney, setStatus, setMsg ,user } = useContext(DataContext)
     
-
+    // const formattedLikes = formatter.format(likes);
 
     const [isClose, setIsClose] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -119,7 +120,7 @@ const DisplayData = ({ money }) => {
                 <tr className='border-b border-gray-200 dark:border-gray-400' key={item.id}>
                     <td>{i + 1}</td>
                     <td>{item["الاسم"]}</td>
-                    <td>{item["المبلغ"]}</td>
+                    <td>{formatter.format(item["المبلغ"])}</td>
                     <td>{item["الشركة"]}</td>
                     <td>{item["التاريخ"]}</td>
                     <td className='h-[60.5px] flex justify-center items-center'><input type="checkbox" className='w-5 h-5 rounded'  checked={item["الحالة"]} onChange={(e)=> {updateMoney(e,item.id,true);setCheck(!check)}}/></td>
@@ -153,7 +154,10 @@ const DisplayData = ({ money }) => {
                 {isOpen ? <PopAdd type='edit' defaultData={addedMoney} toggle={[isClose, setIsClose]} setIsOpen={setIsOpen} /> : null}
                 {isDelOpen ? <Confirm del={del} id={id} toggle={[isClose, setIsClose]} setIsDelOpen={setIsDelOpen} /> : null}
                 {isDelAllOpen ? <Confirm del={delAll} id={id} toggle={[isClose, setIsClose]} setIsDelOpen={setIsDelAllOpen} /> : null}
-            <button onClick={() => openDelAll(user.name.toLowerCase())} className='btn mt-3 mr-2'>حذف الكل</button>
+                <div className='flex  justify-between items-center  mt-3 mr-2 ml-6'>
+                    <button onClick={() => openDelAll(user.name.toLowerCase())} className='btn'>حذف الكل</button>
+                    <NavLink className=" btn"  to="/resetpass">تغيير كلمة السر</NavLink>
+                </div>
             </div>
         </>
     )

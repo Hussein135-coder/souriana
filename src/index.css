@@ -11,3 +11,6 @@
 .before{
    @apply before:content-[''] before:absolute
 }
+.card{
+   @apply dark:bg-gray-800  h-auto w-11/12 max-w-[300px] lg:max-w-[360px] md:max-w-[330px] dark:text-gray-100 p-3 text-center rounded-md
+}

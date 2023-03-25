@@ -36,8 +36,8 @@ const Login = () => {
         if (data.success) {
             e.target.reset();
             await loggedInCheck();
-            const origin = location.state?.from?.pathname || '/';
-            navigate(origin);
+            // const origin = location.state?.from?.pathname || '/';
+            navigate('/analytics');
             return;
         }
         setRedirect(false);

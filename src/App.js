@@ -12,6 +12,7 @@ import ResetPass from './components/ResetPass/ResetPass';
 import Login from './components/Login/Login';
 import Auth from './components/Auth/Auth';
 import Loading from './components/Loading/Loading';
+import Analytics from './components/Analytics/Analytics';
 
 function App() {
   return (
@@ -27,7 +28,11 @@ function App() {
             <Route path="/login" element={
             <Loading>
               <Login />
-            </Loading> } />       
+            </Loading> } />   
+            <Route path="/analytics" element={
+            <Auth>
+              <Analytics />
+            </Auth> } />       
             <Route path="/resetpass" element={
             <Auth>
               <ResetPass />

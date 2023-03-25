@@ -12,6 +12,14 @@ const Money = () => {
     const [id, setId] = useState('all');
     const [moneyG, setMoneyG] = useState(money);
     
+    const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      })
+      
+      
+
+      
     const filterData = (name) => {
         setId(name)
         if (name === 'all') {
@@ -34,9 +42,9 @@ const Money = () => {
                 <h4 className=' mb-5 dark:text-gray-100 text-xl sm:text-2xl '>أهلاً بك {user.nameAr}</h4>
                 <AddMoney />
                 <h3 className='mt-5 mb-5 dark:text-gray-100 text-xl sm:text-2xl text-center '>الحوالات المالية</h3>
-                <FilterBtns filter={filterData} id={id} />
-                <GeneralData money={moneyG } id={id}/>
-                <DisplayData money={moneyG} />
+                <FilterBtns filter={filterData} id={id}  />
+                <GeneralData money={moneyG } id={id} formatter={formatter} />
+                <DisplayData money={moneyG} formatter={formatter} />
             </div>
         </div>
     )

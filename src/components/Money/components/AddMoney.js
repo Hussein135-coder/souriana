@@ -20,10 +20,10 @@ const AddMoney = () => {
 
     return (
         <>
-        <div className='flex  justify-between'>
+        <div>
 
             <button onClick={() => {setIsClose(false);setIsOpen(true);}} type="button" className="btn">إضافة حوالة</button>
-            <NavLink className=" btn"  to="/resetpass">تغيير كلمة السر</NavLink>
+
         </div>
 
             {isOpen ? <PopAdd type='add' defaultData={addedMoney} setIsOpen={setIsOpen} toggle={[isClose, setIsClose]} /> : null}
