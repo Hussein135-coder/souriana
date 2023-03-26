@@ -46,6 +46,7 @@ const Login = () => {
     return (
         <div className=' min-h-view py-24 flex justify-center items-center dark:bg-gray-900'>
             <div className="container">
+                <h1 className='dark:text-gray-100 text-3xl text-center mb-12'>تسجيل الدخول</h1>
                 <form className='m-auto max-w-[500px] w-5/6 rounded-xl px-8 py-10 dark:bg-gray-800 shadow-card' onChange={onChangeInput} onSubmit={submitForm}>
                     <div className="w-full">
                         <div className="mb-4">
@@ -58,7 +59,7 @@ const Login = () => {
                         </div>
                         {wait || redirect ? <span className='dark:text-gray-100 text-gray-900'>{redirect}</span> : <button type="submit"  className='btn  p-2 me-2 login-btn'>تسجيل الدخول</button>}
                         <NavLink to='/reset-password' className='dark:text-gray-100 mt-3 block '>هل نسيت كلمة المرور؟</NavLink>
-                        {msg && <span className='text-red-600 mt-4 block'>{msg}</span>}
+                        {msg && <span className='text-red-500 mt-4 block'>{msg}</span>}
                     </div>
                 </form>
             </div>

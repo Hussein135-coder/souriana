@@ -8,7 +8,6 @@ import {
 import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import Money from './components/Money/Money';
-import ResetPass from './components/ResetPass/ResetPass';
 import ResetPassword from './components/ResetPass/ResetPassword';
 import Login from './components/Login/Login';
 import Auth from './components/Auth/Auth';
@@ -35,10 +34,6 @@ function App() {
             <Auth>
               <Analytics />
             </Auth> } />       
-            <Route path="/resetpass" element={
-            <Auth>
-              <ResetPass />
-            </Auth> } />         
         </Routes>
       </Router>
     </div>

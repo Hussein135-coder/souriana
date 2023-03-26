@@ -156,7 +156,6 @@ const DisplayData = ({ money , formatter }) => {
                 {isDelAllOpen ? <Confirm del={delAll} id={id} toggle={[isClose, setIsClose]} setIsDelOpen={setIsDelAllOpen} /> : null}
                 <div className='flex  justify-between items-center  mt-3 mr-2 ml-6'>
                     <button onClick={() => openDelAll(user.name.toLowerCase())} className='btn'>حذف الكل</button>
-                    <NavLink className=" btn"  to="/resetpass">تغيير كلمة السر</NavLink>
                 </div>
             </div>
         </>
