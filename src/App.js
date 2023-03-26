@@ -18,7 +18,7 @@ import Analytics from './components/Analytics/Analytics';
 function App() {
   return (
     <div className="app dark">
-      <Router basename='/'>
+      <Router>
         <Nav />
         <Routes>
             <Route path="/" element={<Home />} />

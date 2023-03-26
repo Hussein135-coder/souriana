@@ -4,6 +4,7 @@ import bac from '../../images/bac.jpg'
 import syr from '../../images/syr.jpg'
 import Card from './Card'
 import { ImSpinner2 } from 'react-icons/im'
+import BarChart from './BarChart'
 
 const Analytics = () => {
   const [latest, setlatest] = useState([])
@@ -30,6 +31,7 @@ const Analytics = () => {
   return (
     <div className='dark:bg-gray-900 min-h-view py-10 max-w-full'>
         {cards}
+        {/* <BarChart /> */}
     </div>
   )
 }
