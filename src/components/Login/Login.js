@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {NavLink, useLocation, useNavigate } from 'react-router-dom';
+import {NavLink, useNavigate } from 'react-router-dom';
 import { DataContext } from '../../context/DataContext';
 import './Login.css'
 
@@ -35,7 +35,6 @@ const Login = () => {
         if (data.success) {
             e.target.reset();
             await loggedInCheck();
-            // const origin = location.state?.from?.pathname || '/';
             navigate('/analytics');
             return;
         }
