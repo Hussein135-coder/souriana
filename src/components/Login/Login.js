@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {useLocation, useNavigate } from 'react-router-dom';
+import {NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { DataContext } from '../../context/DataContext';
 import './Login.css'
 
@@ -13,7 +13,6 @@ const Login = () => {
         password: ''
     });
     const navigate = useNavigate();
-    const location = useLocation();
 
     const onChangeInput = (e) => {
         setFormData({
@@ -58,6 +57,7 @@ const Login = () => {
                             <input type="password" name='password' className="p-2 rounded w-full focus:outline-0 " placeholder="كلمة المرور" aria-label="كلمة المرور" />
                         </div>
                         {wait || redirect ? <span className='dark:text-gray-100 text-gray-900'>{redirect}</span> : <button type="submit"  className='btn  p-2 me-2 login-btn'>تسجيل الدخول</button>}
+                        <NavLink to='/reset-password' className='dark:text-gray-100 mt-3 block '>هل نسيت كلمة المرور؟</NavLink>
                         {msg && <span className='text-red-600 mt-4 block'>{msg}</span>}
                     </div>
                 </form>

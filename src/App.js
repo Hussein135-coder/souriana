@@ -9,6 +9,7 @@ import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import Money from './components/Money/Money';
 import ResetPass from './components/ResetPass/ResetPass';
+import ResetPassword from './components/ResetPass/ResetPassword';
 import Login from './components/Login/Login';
 import Auth from './components/Auth/Auth';
 import Loading from './components/Loading/Loading';
@@ -17,10 +18,11 @@ import Analytics from './components/Analytics/Analytics';
 function App() {
   return (
     <div className="app dark">
-      <Router>
+      <Router basename='/'>
         <Nav />
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/money" element={
             <Auth>
               <Money />
