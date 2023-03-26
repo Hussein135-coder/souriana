@@ -5,7 +5,8 @@ import { Navigate } from 'react-router-dom';
 export const DataContext = createContext();
 
 export const Axios = axios.create({
-    baseURL: 'https://souriana.ml/api/',
+    // baseURL: 'https://souriana.ml/api/',
+    baseURL: 'https://souriana.epizy.com/api/',
     // withCredentials: true
 });
 
