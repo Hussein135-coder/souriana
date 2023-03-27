@@ -1,9 +1,15 @@
 import React from 'react'
 
 const DataTable = ({data}) => {
-    const {syrEdu , bac , syr } = data
+    const {syrEdu } = data
     const lastIndex = syrEdu.length - 1;
     const beforeLastIndex = lastIndex - 1;
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      })
+      
 
     const trs =  Object.keys(data).map((pageName)=>{
         const page = data[pageName];
@@ -11,8 +17,8 @@ const DataTable = ({data}) => {
         return(
         <tr className='border-b border-gray-200 dark:border-gray-400'>
             <th>{page[lastIndex].name}</th>
-            <td>{page[beforeLastIndex].likes}</td>
-            <td>{page[lastIndex].likes}</td>
+            <td>{formatter.format(page[beforeLastIndex].likes)}</td>
+            <td>{formatter.format(page[lastIndex].likes)}</td>
             <td className={diffrence > 0 ? "text-green-500": "text-red-500"}>{diffrence}</td>
         </tr>
     )})
