@@ -26,7 +26,7 @@ const Form = ({type,title,data}) => {
     }
         setWait(true)
         try {
-            const { data } = await axios.post(`https://souriana.ml/api/${link}.php`, formData);
+            const { data } = await axios.post(`https://tech-inj.tech/api/${link}.php`, formData);
             if(data.success){
                 setWait(false)
                 setMsg(data.message);
