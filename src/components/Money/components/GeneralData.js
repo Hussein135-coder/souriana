@@ -8,18 +8,18 @@ const GeneralData = ({ money , id , formatter}) => {
     let allMoney = 0;
 
     data.money.map(d => {
-        allMoney += d['المبلغ']
+        allMoney += Number(d['المبلغ'])
     })
 
     const personMoney = Math.floor(allMoney / 3) ;
     const personMoneyFormatted = formatter.format(personMoney); ;
 
     const done = money.filter((m) => {
-        return m["الحالة"] === 1
+        return m["الحالة"] == 1
     })
 
     const pending = money.filter((m) => {
-        return m["الحالة"] === 0
+        return m["الحالة"] == 0
     })
     
     const count = {
@@ -35,15 +35,15 @@ const GeneralData = ({ money , id , formatter}) => {
     }
 
     money.map(d => {
-        generalMoney.total += d['المبلغ']
+        generalMoney.total +=  Number(d['المبلغ'])
     })
     
     done.map(d => {
-        generalMoney.done += d['المبلغ']
+        generalMoney.done +=  Number(d['المبلغ'])
     })
     
     pending.map(d => {
-        generalMoney.pending += d['المبلغ']
+        generalMoney.pending +=  Number(d['المبلغ'])
     })
 
     const countTotal = formatter.format(count.total);

@@ -123,7 +123,7 @@ const DisplayData = ({ money , formatter }) => {
                     <td>{formatter.format(item["المبلغ"])}</td>
                     <td>{item["الشركة"]}</td>
                     <td>{item["التاريخ"]}</td>
-                    <td className='h-[60.5px] flex justify-center items-center'><input type="checkbox" className='w-5 h-5 rounded'  checked={item["الحالة"]} onChange={(e)=> {updateMoney(e,item.id,true);setCheck(!check)}}/></td>
+                    <td className='h-[60.5px] flex justify-center items-center'><input type="checkbox" className='w-5 h-5 rounded'  checked={Number(item["الحالة"])} onChange={(e)=> {updateMoney(e,item.id,true);setCheck(!check)}}/></td>
                     <td><button onClick={() => openDel(item.id)} className='btn'>❌</button></td>
                     <td><button onClick={() => open(item.id)} className='btn'>🖋</button></td>
                 </tr>
