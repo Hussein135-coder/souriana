@@ -22,7 +22,7 @@ export default function ResetPass() {
     const checkEmailToken = async ()=>{
       try {
         console.log(emailLink , token);
-        const res = await axios.post("https://souriana.ml/api/check-email-token.php", {email : emailLink ,reset_token : token });
+        const res = await axios.post("https://tech-inj.tech/api/check-email-token.php", {email : emailLink ,reset_token : token });
         if(res.data !== 1){
           setContent(<div className='dark:text-gray-100 text-center text-2xl'>{res.data}</div>);
         }else{
