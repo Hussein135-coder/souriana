@@ -16,6 +16,9 @@ export const Axios = axios.create({
 const DataContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [money, setMoney] = useState(null);
+    const [pagesData, setPagesData] = useState({});
+    const [chart, setChart] = useState({})
+    const [latest, setlatest] = useState([])
     const [wait, setWait] = useState(false);
     const [loading, setLoading] = useState(true);
     const [status, setStatus] = useState(false)
@@ -130,6 +133,47 @@ const DataContextProvider = ({ children }) => {
         return { success: 1, message: 'تم تسجيل الخروج بنجاح' }
     }
 
+    // Fetch all data from API
+    const fetchData = async ()=>{
+    const res = await fetch('https://syr-scraper.onrender.com/now')
+    const dataNow = await res.json()
+    setlatest(dataNow)
+
+    const res2 = await fetch('https://syr-scraper.onrender.com/syrEdu')
+    const syrEduFetched = await res2.json()
+
+    const res3 = await fetch('https://syr-scraper.onrender.com/bac')
+    const bacFetched = await res3.json()
+
+    const res4 = await fetch('https://syr-scraper.onrender.com/syr')
+    const syrFetched = await res4.json()
+    
+    setPagesData({
+      syrEdu: syrEduFetched,
+      bac : bacFetched,
+      syr  : syrFetched
+    })
+
+    const lastIndex = syrEduFetched.length - 1;
+    const beforeLastIndex = lastIndex - 1;
+    
+    const likesDiffrence = [syrEduFetched[lastIndex].likes - syrEduFetched[beforeLastIndex].likes , bacFetched[lastIndex].likes - bacFetched[beforeLastIndex].likes ,syrFetched[lastIndex].likes - syrFetched[beforeLastIndex].likes   ]
+    const chartData = {
+      labels: dataNow.map(page => page.name),
+      datasets: [{
+          label: 'الفرق اليومي',
+          data: likesDiffrence,
+          borderWidth: 1,
+          backgroundColor : ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)','rgba(153, 102, 255, 0.2)'],
+          borderColor : ['rgb(54, 162, 235)','rgb(255, 99, 132)','rgb(153, 102, 255)'],
+          categoryPercentage:0.5,
+          barPercentage: 0.5
+        }]
+      }
+      setChart(chartData);
+  }
+
+
     useEffect(() => {
         async function asyncCall() {
             await loggedInCheck();
@@ -139,7 +183,7 @@ const DataContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <DataContext.Provider value={{loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
+        <DataContext.Provider value={{pagesData,chart,latest,fetchData,loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
             {children}
         </DataContext.Provider>
     )

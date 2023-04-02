@@ -14,6 +14,7 @@ import Auth from './components/Auth/Auth';
 import Loading from './components/Loading/Loading';
 import Analytics from './components/Analytics/Analytics';
 
+
 function App() {
   return (
     <div className="app dark">
