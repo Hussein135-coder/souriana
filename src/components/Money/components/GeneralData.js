@@ -61,7 +61,7 @@ const GeneralData = ({ money , id , formatter}) => {
                 <div className="text-xl dark:text-gray-100  sm:text-2xl">
                     المعلومات العامة
                 </div>
-                <div className="relative overflow-hidden shadow-card max-w-[500px] rounded-lg dark:bg-gray-800 dark:text-gray-100  mx-auto my-4 py-10 px-2 w-5/6 ">
+                <div className="relative overflow-hidden  shadow-card max-w-[500px] rounded-lg dark:bg-gray-800 dark:text-gray-100  mx-auto my-4 py-10 px-2 w-5/6 ">
                     <table className="w-full">
                         <thead>
                             <tr className='border-b border-gray-200 dark:border-gray-400'>

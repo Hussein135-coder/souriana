@@ -7,8 +7,6 @@ import { NavLink } from 'react-router-dom'
 
 const DisplayData = ({ money , formatter }) => {
     const { loggedInCheck, delMoney,delAllMoney,addAndUpdateMoney, setStatus, setMsg ,user } = useContext(DataContext)
-    
-    // const formattedLikes = formatter.format(likes);
 
     const [isClose, setIsClose] = useState(false);
     const [isOpen, setIsOpen] = useState(false);

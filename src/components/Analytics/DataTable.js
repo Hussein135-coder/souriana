@@ -23,10 +23,11 @@ const DataTable = ({data ,type}) => {
         </tr>
     )})
   return (
-    <div id={type == "likes" ? 'facebook' : 'telegram'} className="relative overflow-hidden shadow-card max-w-[500px] rounded-lg dark:bg-gray-800 dark:text-gray-100  mx-auto my-20 py-10 px-2 w-5/6 ">
+    <div id={type == "likes" ? 'facebook' : 'telegram'} className="relative  overflow-hidden  shadow-card max-w-[500px] rounded-lg dark:bg-gray-800 dark:text-gray-100  mx-auto my-20 py-10 px-2 w-5/6 ">
                           <div className=' absolute top-0 left-0 min-w-full'>
                                 <span  className="dark:bg-gray-100  dark:text-gray-800 w-full text-center inline-block  text-lg font-bold">{type == 'likes' ? 'Facebook' : 'Telegram'}</span>
                             </div>
+                            <div className='overflow-x-auto'>
                     <table className="w-full">
                         <thead>
                             <tr className='border-b border-gray-200 dark:border-gray-400'>
@@ -41,7 +42,7 @@ const DataTable = ({data ,type}) => {
                             {trs}
                         </tbody>
                     </table>
-              
+                    </div>
                 </div>
   )
 }
