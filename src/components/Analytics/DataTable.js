@@ -35,7 +35,6 @@ const DataTable = ({data ,type}) => {
                                 <th>البارحة</th>
                                 <th>اليوم</th>
                                 <th>الفرق</th>
-
                             </tr>
                         </thead>
                         <tbody>

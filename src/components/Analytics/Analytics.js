@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import syrEdu from '../../images/syrEdu.jpg'
 import bac from '../../images/bac.jpg'
 import syr from '../../images/syr.jpg'
@@ -26,9 +26,13 @@ const Analytics = () => {
     <div className='dark:bg-gray-900 min-h-view py-10 max-w-full container'>
         {cards}
         
-      {Object.keys(pagesData).length !== 0 && <DataTable data={pagesData} type='likes' />  }
-      {Object.keys(pagesData).length !== 0 && <DataTable data={pagesData} type='members' />  }
-      {Object.keys(pagesData).length !== 0 && <BarChart chartData={chart} />  }
+      {Object.keys(pagesData).length !== 0 &&
+      <>
+       <DataTable data={pagesData} type='likes' />
+       <DataTable data={pagesData} type='members' />
+       <BarChart chartData={chart} />
+        </>
+         }
     </div>
   )
 }

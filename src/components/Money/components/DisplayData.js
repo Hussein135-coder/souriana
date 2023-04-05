@@ -3,7 +3,6 @@ import { DataContext } from '../../../context/DataContext'
 import Confirm from './Confirm'
 import PopAdd from './PopAdd'
 import '../../../App.css'
-import { NavLink } from 'react-router-dom'
 
 const DisplayData = ({ money , formatter }) => {
     const { loggedInCheck, delMoney,delAllMoney,addAndUpdateMoney, setStatus, setMsg ,user } = useContext(DataContext)
@@ -15,6 +14,9 @@ const DisplayData = ({ money , formatter }) => {
     const [addedMoney, setAddedMoney] = useState({});
     const [id, setId] = useState({});
     const [check, setCheck] = useState();
+    const [moneyDisplay, setMoneyDisplay] = useState(money);
+
+
 
     // Del
     const openDel = (id) => {
@@ -65,8 +67,10 @@ const DisplayData = ({ money , formatter }) => {
 
     // Update
     const updateMoney = (e,id,checkbox) => {
-        money.map((item) => {
+        const moneyArr = [...moneyDisplay];
+        moneyDisplay.map((item) => {
             if (item.id === id) {
+                const itemIndex = moneyDisplay.indexOf(item)
                 const status = checkbox ?  e.target.checked : item['الحالة']
                 const moneyId = {
                     id: id,
@@ -77,7 +81,11 @@ const DisplayData = ({ money , formatter }) => {
                     status: status,
                     user: item['المستلم']
                 };
+                moneyArr[itemIndex] = {...item , "الحالة" : Number(status)};
                 setAddedMoney(moneyId)
+                setMoneyDisplay(moneyArr)
+                setCheck(!check)
+                return;
             }
         })
     }
@@ -111,21 +119,26 @@ const DisplayData = ({ money , formatter }) => {
       updateStatus()
     },[check])
 
+    useEffect(() => {
+        setMoneyDisplay(money)
+      },[money])
+  
+
     // Display Data
-    const trs = money.map((item, i) => {
+    const trs = moneyDisplay.map((item, i) => {
         return (
-            <>
+            
                 <tr className='border-b border-gray-200 dark:border-gray-400' key={item.id}>
                     <td>{i + 1}</td>
                     <td>{item["الاسم"]}</td>
                     <td>{formatter.format(item["المبلغ"])}</td>
                     <td>{item["الشركة"]}</td>
                     <td>{item["التاريخ"]}</td>
-                    <td className='h-[60.5px] flex justify-center items-center'><input type="checkbox" className='w-5 h-5 rounded'  checked={Number(item["الحالة"])} onChange={(e)=> {updateMoney(e,item.id,true);setCheck(!check)}}/></td>
+                    <td className='h-[60.5px] flex justify-center items-center'><input type="checkbox" className='w-5 h-5 rounded'  checked={Number(item['الحالة'])} onChange={(e)=> {updateMoney(e,item.id,true);}}/></td>
                     <td><button onClick={() => openDel(item.id)} className='btn'>❌</button></td>
                     <td><button onClick={() => open(item.id)} className='btn'>🖋</button></td>
                 </tr>
-            </>
+            
         )
     })
 

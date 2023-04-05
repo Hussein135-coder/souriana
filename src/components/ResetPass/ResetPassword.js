@@ -1,18 +1,11 @@
 import React, { useEffect } from 'react'
-import {useState,useContext} from 'react';
+import {useState} from 'react';
 import { ImSpinner2 } from 'react-icons/im';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { DataContext } from '../../context/DataContext';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Form from './Form';
 
 export default function ResetPass() {
-  
-
-    // const [email, setEmail] = useState("");
- 
-
-
     const [content, setContent] = useState(<ImSpinner2 className='mx-auto text-xl dark:text-gray-100 animate-spin' />);
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,7 +14,6 @@ export default function ResetPass() {
 
     const checkEmailToken = async ()=>{
       try {
-        console.log(emailLink , token);
         const res = await axios.post("https://tech-inj.tech/api/check-email-token.php", {email : emailLink ,reset_token : token });
         if(res.data !== 1){
           setContent(<div className='dark:text-gray-100 text-center text-2xl'>{res.data}</div>);
@@ -42,7 +34,7 @@ useEffect(() => {
   }else{
     setContent(<Form type="email" title="البريد الإلكتروني" data={{emailLink,token}}  />);
   }
-}, [])
+}, [emailLink,token])
 
 
   return (
