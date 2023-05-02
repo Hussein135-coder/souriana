@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import syrEdu from '../../images/syrEdu.jpg'
 import bac from '../../images/bac.jpg'
 import syr from '../../images/syr.jpg'
@@ -7,9 +7,10 @@ import BarChart from './BarChart'
 import DataTable from './DataTable'
 import Load from '../Loading/Load'
 import { DataContext } from '../../context/DataContext'
+import MonthTable from './MonthTable'
 
 const Analytics = () => {
-  const {chart , pagesData , latest , fetchData} = useContext(DataContext)
+  const {chart , pagesData , latest } = useContext(DataContext)
   const images = [syrEdu,bac,syr]
 
   // Cards components
@@ -17,11 +18,7 @@ const Analytics = () => {
   {latest.map((data,i) =>  <Card key={data.id} data={data} img={images[i]} />)  }
 </div> : <Load />;
 
-// Fetch Data when page mounted
-  useEffect(() => { 
-    fetchData()
-  }, [])
-  
+console.log('anallytics');
   return (
     <div className='dark:bg-gray-900 min-h-view py-10 max-w-full container'>
         {cards}
@@ -30,6 +27,8 @@ const Analytics = () => {
       <>
        <DataTable data={pagesData} type='likes' />
        <DataTable data={pagesData} type='members' />
+       <MonthTable  data={pagesData}  type='likes'  />
+       <MonthTable  data={pagesData}  type='members'  />
        <BarChart chartData={chart} />
         </>
          }

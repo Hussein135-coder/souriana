@@ -8,7 +8,7 @@ import GeneralData from './components/GeneralData'
 
 const Money = () => {
     const { user, money, msg, status } = useContext(DataContext)
-
+    console.log('money');
     const [id, setId] = useState('all');
     const [moneyG, setMoneyG] = useState(money);
     

@@ -42,7 +42,7 @@ const PopAdd = ({ toggle, defaultData, type , setIsOpen }) => {
     return (
         <>
             <div id='popup' className='m-auto'>
-                <form className={formClass} onSubmit={updateMoney} onChange={onChangeInput}>
+                <form onAnimationEnd={(e)=> e.animationName === "fade-out-form" && setIsOpen(false) }  className={formClass} onSubmit={updateMoney} onChange={onChangeInput}>
                     <div className="">
                         <div className="mb-3">
                             <label className="">الاسم</label>
@@ -76,9 +76,6 @@ const PopAdd = ({ toggle, defaultData, type , setIsOpen }) => {
                     <div className="flex gap-2 mt-3">
                         <button type="button" onClick={function (e) {
                             setIsClose(true)
-                            setTimeout(()=>{
-                                setIsOpen(false)
-                            },300)
                         }
                         } className="btn"  >إغلاق</button>
                         {wait? <button type="submit" disabled={wait} className="btn min-w-[57px]"><ImSpinner2 className='mx-auto text-xl animate-spin' /></button>:<button type="submit" className="btn">موافق</button> }

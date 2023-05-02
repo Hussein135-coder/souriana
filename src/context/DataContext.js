@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useMemo } from 'react'
 import axios from 'axios'
 
 export const DataContext = createContext();
@@ -22,6 +22,8 @@ const DataContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [status, setStatus] = useState(false)
     const [msg, setMsg] = useState('')
+    const [loadingOnce,setLoadingOnce] = useState(true)
+    const [loaded,setLoaded] = useState(false)
 
     const message =  'حدث خطأ ما';
 
@@ -98,10 +100,13 @@ const DataContextProvider = ({ children }) => {
             const { data } = await Axios.get('getUser.php');
             if (data.user) {
                 setUser(data.user);
-                const sortData = data.money.sort(function(a,b){
-                    return new Date( b['التاريخ']) - new Date(a['التاريخ']) ;
-                });
-                setMoney(sortData);
+                if(Object.keys(data.money).length > 0){
+
+                    const sortData = data.money.sort(function(a,b){
+                        return new Date( b['التاريخ']) - new Date(a['التاريخ']) ;
+                    });
+                    setMoney(sortData);
+                }
                 return;
             }
         setUser(null);
@@ -172,17 +177,17 @@ const DataContextProvider = ({ children }) => {
       setChart(chartData);
   }
 
-
     useEffect(() => {
         async function asyncCall() {
             await loggedInCheck();
             setLoading(false)
         }
         asyncCall();
+        fetchData()
     }, []);
 
     return (
-        <DataContext.Provider value={{pagesData,chart,latest,fetchData,loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
+        <DataContext.Provider value={{loaded,setLoaded,loadingOnce,setLoadingOnce,pagesData,chart,latest,fetchData,loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
             {children}
         </DataContext.Provider>
     )
