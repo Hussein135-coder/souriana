@@ -1,28 +1,41 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import syrEdu from '../../images/syrEdu.jpg'
 import bac from '../../images/bac.jpg'
 import syr from '../../images/syr.jpg'
-import Card from './Card'
 import BarChart from './BarChart'
 import DataTable from './DataTable'
-import Load from '../Loading/Load'
 import { DataContext } from '../../context/DataContext'
 import MonthTable from './MonthTable'
+import AddAnalytics from './AddAnalytics'
+import Cards from './Cards'
 
 const Analytics = () => {
-  const {chart , pagesData , latest } = useContext(DataContext)
+  const {fetchData,chart , pagesData , latest} = useContext(DataContext)
   const images = [syrEdu,bac,syr]
+  const [isOpen, setIsOpen] = useState(false);
+  const [isClose, setIsClose] = useState(false);
+  const defaultData = {
+    page: 'syredu',
+    likes: 0,
+    members: 0,
+    date: '',
+}
 
-  // Cards components
-  const cards =  Object.keys(pagesData).length !== 0  ? <div className='container grid gap-4  justify-items-center grid-cols-1 sm:grid-cols-[repeat(2,minmax(300px,_1fr))] lg:sm:grid-cols-[repeat(3,minmax(300px,_1fr))]'>
-  {latest.map((data,i) =>  <Card key={data.id} data={data} img={images[i]} />)  }
-</div> : <Load />;
 
-console.log('anallytics');
+useEffect(()=>{
+  fetchData();
+},[])
   return (
+    <>
+    <div  className='dark:bg-gray-900'>
+      <div className='container px-10 pt-10'>
+        <button onClick={() => {setIsClose(false);setIsOpen(true);}} type="button" className="btn">إضافة</button>
+      </div>
+    </div>
+
+        {isOpen ? <AddAnalytics type='add' defaultData={defaultData} setIsOpen={setIsOpen} toggle={[isClose, setIsClose]} /> : null}
     <div className='dark:bg-gray-900 min-h-view py-10 max-w-full container'>
-        {cards}
-        
+        <Cards images={images} latest={latest} />
       {Object.keys(pagesData).length !== 0 &&
       <>
        <DataTable data={pagesData} type='likes' />
@@ -33,6 +46,7 @@ console.log('anallytics');
         </>
          }
     </div>
+         </>
   )
 }
 

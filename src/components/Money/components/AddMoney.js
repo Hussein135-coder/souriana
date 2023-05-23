@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { Navigate, NavLink } from 'react-router-dom';
 import { DataContext } from '../../../context/DataContext';
 import PopAdd from './PopAdd';
 

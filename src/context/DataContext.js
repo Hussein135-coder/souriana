@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 
 export const DataContext = createContext();
@@ -137,33 +137,57 @@ const DataContextProvider = ({ children }) => {
         return { success: 1, message: 'تم تسجيل الخروج بنجاح' }
     }
 
+    const addAnalytics = async ({ page, likes,members, date }) => {
+        setWait(true);
+        try {
+            const { data } = await Axios.post( 'add-analytics.php', {
+                page, likes,members, date
+            });
+            setWait(false);
+            setlatest([]);
+            setPagesData({});
+            return data;
+        }
+        catch (err) {
+            setWait(false);
+            return { success: 0, message: message };
+        }
+    }
+
     // Fetch all data from API
     const fetchData = async ()=>{
-    const res = await fetch('https://syr-scraper.onrender.com/now')
-    const dataNow = await res.json()
-    setlatest(dataNow)
+    const lastData = [];
 
-    const res2 = await fetch('https://syr-scraper.onrender.com/syrEdu')
+    const res2 = await fetch('https://tech-inj.tech/api/syredu.php')
     const syrEduFetched = await res2.json()
+    lastData.push(syrEduFetched[syrEduFetched.length - 1])
 
-    const res3 = await fetch('https://syr-scraper.onrender.com/bac')
+    const res3 = await fetch('https://tech-inj.tech/api/bac.php')
     const bacFetched = await res3.json()
-
-    const res4 = await fetch('https://syr-scraper.onrender.com/syr')
-    const syrFetched = await res4.json()
+    lastData.push(bacFetched[bacFetched.length - 1])
     
+    const res4 = await fetch('https://tech-inj.tech/api/syr.php')
+    const syrFetched = await res4.json()
+    lastData.push(syrFetched[syrFetched.length - 1])
     setPagesData({
       syrEdu: syrEduFetched,
       bac : bacFetched,
       syr  : syrFetched
     })
-
-    const lastIndex = syrEduFetched.length - 1;
-    const beforeLastIndex = lastIndex - 1;
+    setlatest(lastData)
     
-    const likesDiffrence = [syrEduFetched[lastIndex].likes - syrEduFetched[beforeLastIndex].likes , bacFetched[lastIndex].likes - bacFetched[beforeLastIndex].likes ,syrFetched[lastIndex].likes - syrFetched[beforeLastIndex].likes   ]
+
+    const fetchedIndex = (page) =>{
+        const lastIndex = page.length - 1;
+        const beforeLastIndex = lastIndex - 1;
+
+        return [lastIndex, beforeLastIndex]
+    }
+   
+    
+    const likesDiffrence = [syrEduFetched[fetchedIndex(syrEduFetched)[0]].likes - syrEduFetched[fetchedIndex(syrEduFetched)[1]].likes , bacFetched[fetchedIndex(bacFetched)[0]].likes - bacFetched[fetchedIndex(bacFetched)[1]].likes ,syrFetched[fetchedIndex(syrFetched)[0]].likes - syrFetched[fetchedIndex(syrFetched)[1]].likes   ]
     const chartData = {
-      labels: dataNow.map(page => page.name),
+      labels: lastData.map(page => page.name),
       datasets: [{
           label: 'الفرق اليومي',
           data: likesDiffrence,
@@ -183,11 +207,10 @@ const DataContextProvider = ({ children }) => {
             setLoading(false)
         }
         asyncCall();
-        fetchData()
     }, []);
 
     return (
-        <DataContext.Provider value={{loaded,setLoaded,loadingOnce,setLoadingOnce,pagesData,chart,latest,fetchData,loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
+        <DataContext.Provider value={{addAnalytics,loaded,setLoaded,loadingOnce,setLoadingOnce,pagesData,chart,latest,fetchData,loading, resetPass, loginUser, addAndUpdateMoney, delAllMoney, delMoney, status, msg, setStatus, setMsg, wait, money, user, loggedInCheck, logout }}>
             {children}
         </DataContext.Provider>
     )

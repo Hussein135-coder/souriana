@@ -2,9 +2,6 @@ import React from 'react'
 
 const DataTable = ({data ,type}) => {
     const {syrEdu } = data
-    const lastIndex = syrEdu.length - 1;
-    const beforeLastIndex = lastIndex - 1;
-
     const formatter = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 2
@@ -12,7 +9,10 @@ const DataTable = ({data ,type}) => {
       
 
     const trs =  Object.keys(data).map((pageName)=>{
+
         const page = data[pageName];
+        const lastIndex = page.length - 1;
+        const beforeLastIndex = lastIndex - 1;
         const diffrence = page[lastIndex][type] - page[beforeLastIndex][type];
         return(
         <tr key={pageName} className='border-b border-gray-200 dark:border-gray-400'>
