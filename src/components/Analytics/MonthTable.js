@@ -49,12 +49,14 @@ const MonthTable = ({data,type}) => {
             return syr[i].date.includes(`2023-0${monthNum}`)
          })
 
-        const lastMonthIndex = syrEduMonth.length - 1;
+        const lastSyrEduMonthIndex = syrEduMonth.length - 1;
+        const lastBacMonthIndex = bacMonth.length - 1;
+        const lastSyrMonthIndex = syrMonth.length - 1;
 
     
-        const syrEduLastDay = returnLastDay(syrEduMonth,lastMonthIndex)
-        const bacLastDay = returnLastDay(bacMonth,lastMonthIndex)
-        const syrLastDay = returnLastDay(syrMonth,lastMonthIndex)
+        const syrEduLastDay = returnLastDay(syrEduMonth,lastSyrEduMonthIndex)
+        const bacLastDay = returnLastDay(bacMonth,lastBacMonthIndex)
+        const syrLastDay = returnLastDay(syrMonth,lastSyrMonthIndex)
 
         const syrEduFirstDay = returnFirstDay(syrEduMonth)
         const bacFirstDay = returnFirstDay(bacMonth)
