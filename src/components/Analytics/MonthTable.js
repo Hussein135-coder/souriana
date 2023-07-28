@@ -66,7 +66,7 @@ const MonthTable = ({data,type}) => {
         const [bacDiff,baclastDayVal] = lastDayVal(bacLastDay,bacFirstDay)
         const [syrDiff,syrlastDayVal] =lastDayVal(syrLastDay,syrFirstDay)
         
-        if(syrEduMonth.length < 20){
+        if(syrEduMonth.length <= 20){
             return
         }
 
