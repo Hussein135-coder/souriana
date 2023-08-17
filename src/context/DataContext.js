@@ -5,7 +5,7 @@ export const DataContext = createContext();
 
 export const Axios = axios.create({
     // baseURL: 'https://souriana.ml/api/',
-    baseURL: 'https://tech-inj.tech/api/',
+    baseURL: 'https://syr-api.rf.gd/api/',
     // withCredentials: true
 });
 
