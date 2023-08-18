@@ -5,7 +5,7 @@ export const DataContext = createContext();
 
 export const Axios = axios.create({
     // baseURL: 'https://souriana.ml/api/',
-    baseURL: 'https://syr-api.rf.gd/api/',
+    baseURL: 'https://abessive-slaps.000webhostapp.com/api/',
     // withCredentials: true
 });
 
