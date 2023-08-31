@@ -5,7 +5,7 @@ export const DataContext = createContext();
 
 export const Axios = axios.create({
     // baseURL: 'https://souriana.ml/api/',
-    baseURL: 'https://abessive-slaps.000webhostapp.com/api/',
+    baseURL: 'https://souriana-api.vercel.app/',
     // withCredentials: true
 });
 
@@ -71,7 +71,7 @@ const DataContextProvider = ({ children }) => {
     const loginUser = async ({ name, password }) => {
         setWait(true);
         try {
-            const { data } = await Axios.post('login.php', {
+            const { data } = await Axios.post('login', {
                 name,
                 password
             });
@@ -97,7 +97,7 @@ const DataContextProvider = ({ children }) => {
         Axios.defaults.headers.common['Authorization'] = 'Bearer ' + loginToken;
 
         if(true){
-            const { data } = await Axios.get('getUser.php');
+            const { data } = await Axios.get('getUser');
             if (data.user) {
                 setUser(data.user);
                 if(Object.keys(data.money).length > 0){
