@@ -30,7 +30,7 @@ const DataContextProvider = ({ children }) => {
     const addAndUpdateMoney = async ({ id, name, money, company, date, status, user }, type) => {
         setWait(true);
         try {
-            const { data } = await Axios.post(type + '.php', {
+            const { data } = await Axios.post(type, {
                 id, name, money, company, date, status, user
             });
             setWait(false);
@@ -45,7 +45,7 @@ const DataContextProvider = ({ children }) => {
     const delMoney = async ({ id }) => {
         setWait(true);
         try {
-            const { data } = await Axios.post('del.php', { id });
+            const { data } = await Axios.post('del', { id });
             setWait(false);
             return data;
         }
@@ -58,7 +58,7 @@ const DataContextProvider = ({ children }) => {
     const delAllMoney = async ({ user }) => {
         setWait(true);
         try {
-            const { data } = await Axios.post('delAll.php', { user });
+            const { data } = await Axios.post('delAll', { user });
             setWait(false);
             return data;
         }
@@ -118,7 +118,7 @@ const DataContextProvider = ({ children }) => {
     const resetPass = async ({ user, newPass }) => {
         setWait(true);
         try {
-            const { data } = await Axios.post('resetPass.php', {
+            const { data } = await Axios.post('resetPass', {
                 user, newPass
             });
             setWait(false);
@@ -140,7 +140,7 @@ const DataContextProvider = ({ children }) => {
     const addAnalytics = async ({ page, likes,members, date }) => {
         setWait(true);
         try {
-            const { data } = await Axios.post( 'add-analytics.php', {
+            const { data } = await Axios.post( 'add-analytics', {
                 page, likes,members, date
             });
             setWait(false);
@@ -158,15 +158,15 @@ const DataContextProvider = ({ children }) => {
     const fetchData = async ()=>{
     const lastData = [];
 
-    const res2 = await fetch('https://tech-inj.tech/api/syredu.php')
+    const res2 = await fetch('https://souriana-api.vercel.app/syredu')
     const syrEduFetched = await res2.json()
     lastData.push(syrEduFetched[syrEduFetched.length - 1])
 
-    const res3 = await fetch('https://tech-inj.tech/api/bac.php')
+    const res3 = await fetch('https://souriana-api.vercel.app/bac')
     const bacFetched = await res3.json()
     lastData.push(bacFetched[bacFetched.length - 1])
     
-    const res4 = await fetch('https://tech-inj.tech/api/syr.php')
+    const res4 = await fetch('https://souriana-api.vercel.app/syr')
     const syrFetched = await res4.json()
     lastData.push(syrFetched[syrFetched.length - 1])
     setPagesData({
