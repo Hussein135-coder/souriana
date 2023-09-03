@@ -91,7 +91,7 @@ const DisplayData = ({ money , formatter }) => {
     }
 
     const open = (id) => {
-        updateMoney('',id,false)
+        //updateMoney('',id,false)
         setIsClose(false)
         setIsOpen(true)
     }
