@@ -66,7 +66,9 @@ const MonthTable = ({data,type}) => {
         const [bacDiff,baclastDayVal] = lastDayVal(bacLastDay,bacFirstDay)
         const [syrDiff,syrlastDayVal] =lastDayVal(syrLastDay,syrFirstDay)
         
-        if(syrEduMonth.length <= 20){
+        const today  = new Date();
+        const date2  = new Date(`${monthNum}/30/2023`);
+        if(today < date2){
             return
         }
 
