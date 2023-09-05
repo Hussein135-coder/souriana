@@ -16,12 +16,12 @@ const MonthTable = ({data,type}) => {
       })
       
       const returnLastDay = (pageMonth,lastMonthIndex)=>{
-        const day =  pageMonth[lastMonthIndex][type]
+        const day = pageMonth.length >1 ? pageMonth[lastMonthIndex][type]: '-'
         return day 
     }
 
     const returnFirstDay = (pageMonth)=>{
-        const day = pageMonth[0][type]
+        const day = pageMonth.length >1 ? pageMonth[0][type]: '-'
         return day 
     }
     const lastDayVal = (lastDay,firstDay)=>{
