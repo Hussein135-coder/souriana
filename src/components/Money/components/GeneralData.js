@@ -14,11 +14,11 @@ const GeneralData = ({ money , id , formatter}) => {
     const personMoney = Math.floor(allMoney / 3) ;
     const personMoneyFormatted = formatter.format(personMoney); ;
 
-    const done = money.filter((m) => {
+    const done = money?.filter((m) => {
         return m["الحالة"] == 1
     })
 
-    const pending = money.filter((m) => {
+    const pending = money?.filter((m) => {
         return m["الحالة"] == 0
     })
     
