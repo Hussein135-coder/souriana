@@ -68,7 +68,7 @@ const DisplayData = ({ money , formatter }) => {
     // Update
     const updateMoney = (e,id,checkbox) => {
         const moneyArr = [...moneyDisplay];
-        moneyDisplay.map((item) => {
+        moneyDisplay?.map((item) => {
             if (item.id === id) {
                 const itemIndex = moneyDisplay.indexOf(item)
                 const status = checkbox ?  e.target.checked : item['الحالة']
@@ -125,7 +125,7 @@ const DisplayData = ({ money , formatter }) => {
   
 
     // Display Data
-    const trs = moneyDisplay.map((item, i) => {
+    const trs = moneyDisplay?.map((item, i) => {
         return (
             
                 <tr className='border-b border-gray-200 dark:border-gray-400' key={item.id}>
