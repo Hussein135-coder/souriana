@@ -7,7 +7,7 @@ const GeneralData = ({ money , id , formatter}) => {
     
     let allMoney = 0;
 
-    data.money.map(d => {
+    data?.money?.map(d => {
         allMoney += Number(d['المبلغ'])
     })
 
