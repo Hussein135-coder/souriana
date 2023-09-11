@@ -23,9 +23,9 @@ const GeneralData = ({ money , id , formatter}) => {
     })
     
     const count = {
-        total: money.length,
-        done: done.length,
-        pending: pending.length
+        total: money?.length,
+        done: done?.length,
+        pending: pending?.length
     }
     
     const generalMoney = {
@@ -34,15 +34,15 @@ const GeneralData = ({ money , id , formatter}) => {
         pending: 0
     }
 
-    money.map(d => {
+    money?.map(d => {
         generalMoney.total +=  Number(d['المبلغ'])
     })
     
-    done.map(d => {
+    done?.map(d => {
         generalMoney.done +=  Number(d['المبلغ'])
     })
     
-    pending.map(d => {
+    pending?.map(d => {
         generalMoney.pending +=  Number(d['المبلغ'])
     })
 
