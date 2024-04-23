@@ -62,7 +62,7 @@ console.log(formData.date, 'date')
                         </div>
                         <div className="mb-3">
                             <label className="">التاريخ</label>
-                            <input value={formData.date} type="date" name='date' className="block border w-full p-1 rounded mt-2 dark:text-gray-900 " required />
+                            <input value={formData?.date?.slice(0,10)} type="date" name='date' className="block border w-full p-1 rounded mt-2 dark:text-gray-900 " required />
                         </div>
                         <div className="mb-3">
                             <label className="">الحالة</label>
