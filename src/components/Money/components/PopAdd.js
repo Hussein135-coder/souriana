@@ -66,7 +66,7 @@ console.log(formData.date, 'date')
                         </div>
                         <div className="mb-3">
                             <label className="">الحالة</label>
-                            <select value={formData.status ? "1" : "0"} required className="block border w-full p-1 rounded mt-2 dark:text-gray-900" name='status'>
+                            <select value={Number(formData.status)} required className="block border w-full p-1 rounded mt-2 dark:text-gray-900" name='status'>
                                 <option selected value='0'>في الانتظار</option>
                                 <option value='1'>تم الاستلام</option>
                             </select>
