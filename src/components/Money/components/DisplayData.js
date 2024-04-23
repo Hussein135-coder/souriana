@@ -84,7 +84,10 @@ const DisplayData = ({ money , formatter }) => {
                 moneyArr[itemIndex] = {...item , "الحالة" : Number(status)};
                 setAddedMoney(moneyId)
                 setMoneyDisplay(moneyArr)
-                setCheck(!check)
+                if(checkbox){
+                   setCheck(!check)  
+                }
+               
                 return;
             }
         })
