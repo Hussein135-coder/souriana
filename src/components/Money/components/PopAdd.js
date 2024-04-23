@@ -38,7 +38,7 @@ const PopAdd = ({ toggle, defaultData, type , setIsOpen }) => {
             setErrorMsg(data.message);
         }
     }
-console.log(formData.date, 'date')
+console.log(formData.status, 'status')
     return (
         <>
             <div id='popup' className='m-auto'>
@@ -67,8 +67,8 @@ console.log(formData.date, 'date')
                         <div className="mb-3">
                             <label className="">الحالة</label>
                             <select value={Number(formData.status)} required className="block border w-full p-1 rounded mt-2 dark:text-gray-900" name='status'>
-                                <option selected value='0'>في الانتظار</option>
-                                <option value='1'>تم الاستلام</option>
+                                <option selected={formData.status} value='0'>في الانتظار</option>
+                                <option selected={formData.status} value='1'>تم الاستلام</option>
                             </select>
                         </div>
                         {errorMsg && <span className=' text-red-500'>{errorMsg}</span>}
